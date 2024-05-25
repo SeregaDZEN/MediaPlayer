@@ -14,6 +14,9 @@ class MediaLifecycleObserver : LifecycleEventObserver {
         }
         mediaPlayer?.prepareAsync()
     }
+    fun resetMediaPlayer() {
+        mediaPlayer?.reset()
+    }
 
     override fun onStateChanged(source: LifecycleOwner, event: Lifecycle.Event) {
         when (event) {
