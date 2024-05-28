@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.storage.CacheResetOnProcessCanceled.enabled
+
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
@@ -33,9 +35,22 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+
+
+    buildFeatures{
+        viewBinding  = true
+        buildConfig =  true
+    }
+
+
 }
 
 dependencies {
+    implementation (libs.kotlinx.coroutines.core)
+    implementation (libs.androidx.lifecycle.viewmodel.ktx)
+    implementation (libs.androidx.lifecycle.livedata.ktx)
+    implementation (libs.gson)
+    implementation(libs.okhttp)
     implementation(libs.runtimeKtx)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
