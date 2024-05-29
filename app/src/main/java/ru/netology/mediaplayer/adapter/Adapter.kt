@@ -20,18 +20,27 @@ class TrackAdapter(
     }
 
     override fun onBindViewHolder(holder: TrackViewHolder, position: Int) {
-        val track= getItem(position)
+        val track = getItem(position)
         holder.bind(track)
     }
 
     class TrackViewHolder private constructor(
-       private val binding: ItemTrackBinding
+        private val binding: ItemTrackBinding
 
 
-    ) : RecyclerView.ViewHolder( binding.root) {
-        constructor(parent: ViewGroup) : this(ItemTrackBinding.inflate(LayoutInflater.from(parent.context), parent, false))
+    ) : RecyclerView.ViewHolder(binding.root) {
+        constructor(parent: ViewGroup) : this(
+            ItemTrackBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent,
+                false
+            )
+        )
+
         fun bind(track: Track) {
-          binding.track.text = track.name
+            binding.track.text = track.name
+            binding.album.text = track.albumName
+
         }
     }
 

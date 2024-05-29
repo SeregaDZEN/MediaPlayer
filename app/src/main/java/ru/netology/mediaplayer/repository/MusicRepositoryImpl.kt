@@ -14,7 +14,7 @@ import java.io.IOException
 class MusicRepositoryImpl(private val context: Context) : MusicRepository {
     companion object {
         private const val BASE_URL =
-            "https://raw.githubusercontent.com/netology-code/andad-homeworks/master/09_multimedia/data/"
+            "https://raw.githubusercontent.com/netology-code/andad-homeworks/master/09_multimedia/data/album.json"
     }
 
     override suspend fun getTrack(url: String) {

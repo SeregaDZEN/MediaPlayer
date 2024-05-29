@@ -1,15 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    tools:context=".MainActivity"
-    android:orientation="vertical"
-  >
-
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    tools:context=".MainActivity">
 
 
     <ImageView
@@ -22,8 +20,15 @@
         android:id="@+id/track"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
-        android:text="для композиции можно построить"/>
+        android:layout_marginStart="16dp"
+        android:text="track" />
+
+    <TextView
+        android:id="@+id/album"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="album" />
 
     <ImageView
         android:id="@+id/like"
@@ -36,6 +41,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_round" />
+
     <ImageView
         android:id="@+id/menu"
         android:layout_width="wrap_content"
@@ -52,15 +58,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:listitem="" />
-
-    <!--    <Button-->
-    <!--        android:id="@+id/playGO"-->
-    <!--        android:layout_width="wrap_content"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:text="@string/play"-->
-    <!--        app:layout_constraintBottom_toBottomOf="parent"-->
-    <!--        app:layout_constraintEnd_toEndOf="parent"-->
-    <!--        app:layout_constraintStart_toStartOf="parent" />-->
 
 </LinearLayout>
 

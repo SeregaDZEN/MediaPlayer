@@ -47,7 +47,7 @@ class MainActivity : AppCompatActivity() {
         val adapter = TrackAdapter()
         rec.adapter = adapter
 
-        val track = Track(1,"12","sdf","Abba") // моковые данные - настоящие
+        val track = Track(1,"12","SDFPIpu","Abba") // моковые данные - настоящие
 
         adapter.submitList(listOf(track))
 
