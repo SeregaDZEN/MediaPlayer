@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import ru.netology.mediaplayer.databinding.ItemTrackBinding
-import ru.netology.mediaplayer.dto.Track
+import ru.netology.mediaplayer.model.Track
 
 /**
  *  адаптер для отоб списка [Track]

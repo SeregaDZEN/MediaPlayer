@@ -6,7 +6,7 @@ import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.LifecycleOwner
 
 class MediaLifecycleObserver : LifecycleEventObserver {
-    var mediaPlayer: MediaPlayer? = MediaPlayer()
+    private var mediaPlayer: MediaPlayer? = MediaPlayer()
 
     fun play() {
         mediaPlayer?.setOnPreparedListener {

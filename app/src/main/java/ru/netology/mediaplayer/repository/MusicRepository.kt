@@ -1,8 +1,8 @@
 package ru.netology.mediaplayer.repository
 
-import kotlinx.coroutines.flow.Flow
+import ru.netology.mediaplayer.model.Music
 
 interface MusicRepository {
-    suspend fun getTrack( url : String)
+    suspend fun getTracks( ) : Music
 
 }

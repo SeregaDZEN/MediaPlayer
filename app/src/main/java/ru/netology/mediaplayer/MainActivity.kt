@@ -1,45 +1,32 @@
 package ru.netology.mediaplayer
 
 import android.os.Bundle
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.viewmodel.viewModelFactory
 import com.google.gson.Gson
+import dagger.hilt.android.AndroidEntryPoint
 import ru.netology.mediaplayer.adapter.TrackAdapter
 import ru.netology.mediaplayer.databinding.ActivityMainBinding
-import ru.netology.mediaplayer.dto.Music
-import ru.netology.mediaplayer.dto.Track
+import ru.netology.mediaplayer.model.Music
+import ru.netology.mediaplayer.model.Track
+import ru.netology.mediaplayer.repository.MusicRepository
+import ru.netology.mediaplayer.repository.MusicRepositoryImpl
+import ru.netology.mediaplayer.viewmodel.MusicViewModel
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
 
-    private val json = """{
-        "id": 1,
-        "title": "SoundHelix Songs",
-        "subtitle": "www.soundhelix.com",
-        "artist": "T. Schürger",
-        "published": [2009, 2010, 2011, 2013],
-        "genre": "electronic",
-        "tracks": [
-            {"id": 1, "file": "1.mp3"}
-        ]
-    }"""
-    val musicData = parseJson(json)
-
-
-//    if (response.isSuccessful) {
-//        val responseData = response.body?.string()
-//        println(responseData)
-//    } else {
-//        println("Request Failed: ${response.code}")
-//    }
-
-    private lateinit var binding: ActivityMainBinding
-
     private val observerMedia = MediaLifecycleObserver()
 
+    val viewModel: MusicViewModel by viewModels ()
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        binding = ActivityMainBinding.inflate(layoutInflater)
+
         super.onCreate(savedInstanceState)
+
+        val binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         lifecycle.addObserver(observerMedia)
@@ -47,9 +34,21 @@ class MainActivity : AppCompatActivity() {
         val adapter = TrackAdapter()
         rec.adapter = adapter
 
-        val track = Track(1,"12","SDFPIpu","Abba") // моковые данные - настоящие
 
-        adapter.submitList(listOf(track))
+        val track = Track(1, "12", "SDFPIpu", "Abba") // моковые данные - настоящие
+        val track2 = Track(2, "12", "SLL", "AbOOba") // моковые данные - настоящие
+
+
+        val listTrack =
+            listOf(track, track2, track2, track2, track2, track, track, track, track, track2, track)
+
+        val music = Music(1, "lalala", "lalo", "Джеки чан", "vou vou", "сcomon", listTrack)
+        binding.artistText.text = music.artist
+        binding.genre.text = music.genre
+
+
+
+        adapter.submitList(music.tracks)
 
 
         // val button = binding.
@@ -82,7 +81,12 @@ fun parseJson(json: String): Music {
 
 // 1 - cверстать шапку коректно отобрадалсь превью (верстка)
 // 2 - в МА создать класс Музик
-// заменить в АДапторе трек на трек из музиков
-// в МА пополнить шапку данными из 2го пункта
-// сделать вьюмодельку
+// 3 заменить в АДапторе трек на трек из музиков
+// 4 в МА пополнить шапку данными из 2го пункта
+// 5 сделать вьюмодельку
 //
+
+// хилт добавить
+// прописать в МА анатацию  + прписать нал вью моделью
+// создать класс DI и в нём прорастить ретрофит сервис и репозиторий
+// 

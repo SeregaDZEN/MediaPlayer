@@ -1,42 +1,28 @@
 package ru.netology.mediaplayer.repository
 
 import android.content.Context
-import android.util.Log
-import kotlinx.coroutines.flow.Flow
-import okhttp3.Call
-import okhttp3.Callback
-import okhttp3.HttpUrl
-import okhttp3.OkHttpClient
-import okhttp3.Request
-import okhttp3.Response
+import retrofit2.HttpException
+import ru.netology.mediaplayer.api.ApiService
+import ru.netology.mediaplayer.api.RetrofitService
+import ru.netology.mediaplayer.model.Music
+import ru.netology.mediaplayer.error.ApiError
+import ru.netology.mediaplayer.error.NetworkError
 import java.io.IOException
+import javax.inject.Inject
 
-class MusicRepositoryImpl(private val context: Context) : MusicRepository {
-    companion object {
-        private const val BASE_URL =
-            "https://raw.githubusercontent.com/netology-code/andad-homeworks/master/09_multimedia/data/album.json"
+
+class MusicRepositoryImpl @Inject constructor(private val api: ApiService) : MusicRepository {
+
+    override suspend fun getTracks(): Music {
+
+        return try {
+            api.getTracks() // Прямой вызов, который может выбросить исключение
+        } catch (e: HttpException) {
+            throw ApiError(e.code(), e.message()) // Преобразование в ваше кастомное исключение
+        } catch (e: IOException) {
+            throw NetworkError // Сетевая ошибка
+        }
     }
-
-    override suspend fun getTrack(url: String) {
-        val client = OkHttpClient()
-
-        val request = Request.Builder()
-            .url(BASE_URL)
-            .build()
-        client.newCall(request).enqueue(object : Callback{
-            override fun onFailure(call: Call, e: IOException) {
-                Log.e("error", e.toString())
-            }
-
-            override fun onResponse(call: Call, response: Response) {
-              if (response.isSuccessful){
-                  val data = response.body?.toString()
-              } else print("error")
-            }
-
-        })
-    }
-
-
 }
+
 
