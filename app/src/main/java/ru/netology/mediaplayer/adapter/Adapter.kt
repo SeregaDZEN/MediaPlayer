@@ -11,8 +11,7 @@ import ru.netology.mediaplayer.model.Track
 /**
  *  адаптер для отоб списка [Track]
  */
-class TrackAdapter(
-) : ListAdapter<Track, TrackAdapter.TrackViewHolder>(DiffCallback) {
+class TrackAdapter : ListAdapter<Track, TrackAdapter.TrackViewHolder>(DiffCallback) {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TrackViewHolder {
